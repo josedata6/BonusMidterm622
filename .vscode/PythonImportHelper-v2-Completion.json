@@ -1,0 +1,173 @@
+[
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "displayMenu",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def displayMenu():\n    # Show the main menu options\n    print(\"Main Menu:\")\n    print(\"1. Place Order\")\n    print(\"2. View Orders\")\n    print(\"3. Dispatch Orders\")\n    print(\"4. Track Order\")\n    print(\"5. Update Order\")\n    print(\"6. Search Customer\")\n    print(\"7. Total Orders\")",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "addOrder",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def addOrder(orders, customerData):\n    name = input(\"Enter customer name: \")\n    address = input(\"Enter address: \")\n    product = input(\"Enter product: \")\n    trackingId = generateTrackingId(name) # Generate a unique tracking ID\n# Creates a dictionary called order\n    order = {\n        \"trackingId\": trackingId,\n        \"name\": name,\n        \"address\": address,",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "generateTrackingId",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def generateTrackingId(name):\n    prefix = name[:3].upper() # Takes the first 3 letters of the name and converts them to uppercase\n    number = random.randint(100, 999) # Generates a random number between 100 and 999\n    return prefix + str(number) # Concatenates the prefix and number to create a unique tracking ID\n######\n##### validateTrackingId(trackingId)\ndef validateTrackingId(trackingId):\n    if len(trackingId) == 6 and trackingId.isalnum(): # Check if the ID is 6 characters long and alphanumeric\n        return True # If the ID is valid, the function returns True and stops running.\n    else:",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "validateTrackingId",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def validateTrackingId(trackingId):\n    if len(trackingId) == 6 and trackingId.isalnum(): # Check if the ID is 6 characters long and alphanumeric\n        return True # If the ID is valid, the function returns True and stops running.\n    else:\n        newId = input(\"Invalid ID. Enter a valid 6-character alphanumeric tracking ID: \") #It asks the user to enter a new tracking ID.\n        return validateTrackingId(newId) # The function calls itself with the new ID to check if it's valid.\n### \n### assignRoute(address)\n# Assigns a route based on the address provided\ndef assignRoute(address):",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "assignRoute",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def assignRoute(address):\n    if \"North\" in address:\n        return \"Route A\"\n    elif \"South\" in address:\n        return \"Route B\"\n    elif \"East\" in address:\n        return \"Route C\"\n    elif \"West\" in address:\n        return \"Route D\"\n    else:",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "dispatchOrders",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def dispatchOrders(orders):\n    for order in orders:\n        route = assignRoute(order[\"address\"])\n        order[\"route\"] = route\n        order[\"status\"] = \"Dispatched\" # Updates the order status to \"Dispatched\"\n#########\n##### trackOrder(orders, trackingId)\n# Tracks an order by its tracking ID\n# This function iterates through each order in the orders list.\ndef trackOrder(orders, trackingId):",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "trackOrder",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def trackOrder(orders, trackingId):\n    for order in orders:\n        if order[\"trackingId\"] == trackingId: # Checks if the tracking ID matches\n            print(\"Status:\", order[\"status\"])\n            return # If a match is found, it prints the status of the order.\n    print(\"Order not found\")\n### \n### updateOrderStatus(orders, trackingId, newStatus)\n# Updates the status of an order by its tracking ID\ndef updateOrderStatus(orders, trackingId, newStatus):",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "updateOrderStatus",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def updateOrderStatus(orders, trackingId, newStatus):\n    for order in orders:\n        if order[\"trackingId\"] == trackingId: # Checks if the tracking ID matches\n            order[\"status\"] = newStatus # Updates the status of the order\n            print(\"Order status updated.\") # If a match is found, it updates the status and prints a confirmation message.\n            return\n    print(\"Order not found\") # If no match is found, it prints an error message.\n###\n### printOrderSummary(orders)\n# Prints a summary of all orders",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "printOrderSummary",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def printOrderSummary(orders):\n    print(\"Tracking ID | Name | Product | Status\")\n    for order in orders:\n        print(order[\"trackingId\"], \"|\", order[\"name\"], \"|\", order[\"product\"], \"|\", order[\"status\"])\n## \n## searchOrdersByCustomer(orders, customerName)\n# Searches for orders by customer name\ndef searchOrdersByCustomer(orders, customerName):\n    for order in orders:\n        if customerName.lower() in order[\"name\"].lower(): # Checks if the customer name matches",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "searchOrdersByCustomer",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def searchOrdersByCustomer(orders, customerName):\n    for order in orders:\n        if customerName.lower() in order[\"name\"].lower(): # Checks if the customer name matches\n            print(order)\n###\n#### calculateTotalOrders(orders)\n# Calculates the total number of orders\ndef calculateTotalOrders(orders):\n    return len(orders) # Returns the length of the orders list, which represents the total number of orders.\n###",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "calculateTotalOrders",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def calculateTotalOrders(orders):\n    return len(orders) # Returns the length of the orders list, which represents the total number of orders.\n###\n## groupOrdersByRoute(orders)\n# Groups orders by their assigned routes\ndef groupOrdersByRoute(orders):\n    routeGroups = {} # Initializes an empty dictionary to store route groups\n    for order in orders:\n        route = order[\"route\"] # Gets the route of the order\n        if route not in routeGroups: # Checks if the route is already in the dictionary",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "groupOrdersByRoute",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def groupOrdersByRoute(orders):\n    routeGroups = {} # Initializes an empty dictionary to store route groups\n    for order in orders:\n        route = order[\"route\"] # Gets the route of the order\n        if route not in routeGroups: # Checks if the route is already in the dictionary\n            routeGroups[route] = [] # If not, it creates a new list for that route\n        routeGroups[route].append(order[\"trackingId\"]) # Adds the tracking ID to the list for that route\n    return routeGroups\n###\n## removeOrder(orders, trackingId)",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "removeOrder",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def removeOrder(orders, trackingId):\n    for order in orders:\n        if order[\"trackingId\"] == trackingId: # Checks if the tracking ID matches\n            orders.remove(order) # Removes the order from the list\n            print(\"Order removed.\") # If a match is found, it removes the order and prints a confirmation message.\n            return\n    print(\"Order not found.\") # If no match is found, it prints an error message.\n##\n### saveOrdersToFile(orders, filename)\n# Saves orders to a file",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "saveOrdersToFile",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def saveOrdersToFile(orders, filename):\n    with open(filename, \"w\") as file: # Opens the file in write mode\n        for order in orders: # Iterates through each order in the orders list\n            line = f'{order[\"trackingId\"]}, {order[\"name\"]}, {order[\"product\"]}, {order[\"status\"]}\\n'\n            file.write(line) # Writes the order details to the file\n    print(\"Orders saved.\")\n###\n## loadOrdersFromFile(filename)\n# Loads orders from a file\ndef loadOrdersFromFile(filename):",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "loadOrdersFromFile",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def loadOrdersFromFile(filename):\n    newOrders = [] # Initializes an empty list to store loaded orders\n    with open(filename, \"r\") as file: # Opens the file in read mode\n        for line in file:\n            parts = line.strip().split(\", \") # Splits the line into parts based on commas\n            if len(parts) == 4: # Checks if there are exactly 4 parts\n                # Creates a dictionary for the order with the loaded details\n                order = {\n                    \"trackingId\": parts[0],\n                    \"name\": parts[1],",
+        "detail": "bonus",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "bonus",
+        "description": "bonus",
+        "peekOfCode": "def main():\n    orders = []\n    customerData = {}\n    while True:\n        displayMenu()\n        choice = input(\"Select an option (1-12): \").strip()\n        if choice == \"1\":\n            addOrder(orders, customerData)\n        elif choice == \"2\":\n            printOrderSummary(orders)",
+        "detail": "bonus",
+        "documentation": {}
+    }
+]
